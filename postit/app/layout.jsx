@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className={`${roboto.className} mx-4 md:mx-48 xl:mx-96`}>
+      <body className={`${roboto.className} mx-4 md:mx-48 xl:mx-96 mt-6`}>
         <Nav></Nav>
         {children}
       </body>
