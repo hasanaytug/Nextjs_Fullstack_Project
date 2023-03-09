@@ -1,9 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
+import axios from "axios";
 
 function AddPost() {
   const [text, setText] = useState("");
+
+  const handleAdd = async () => {
+    const res = await axios.post("http://localhost:3000/api/create-post", {
+      text,
+    });
+    console.log(res);
+  };
   return (
     <div className="flex flex-col items-center">
       <textarea
@@ -18,7 +26,7 @@ function AddPost() {
           } text-sm`}
         >{`${text.length}/200`}</p>
         <button
-          onClick={() => console.log(text)}
+          onClick={handleAdd}
           className="bg-blue-300 p-2 rounded m-2 text-sm"
         >
           Post
