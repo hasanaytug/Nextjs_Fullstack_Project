@@ -9,9 +9,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  // const session = await getServerSession(authOptions);
-
-  const posts = await prisma.post.findMany();
+  console.log(req.body);
+  await prisma.post.delete({
+    where: {
+      id: req.body.id,
+    },
+  });
 
   res.status(200).json({ name: "Posts Fetched" });
 }

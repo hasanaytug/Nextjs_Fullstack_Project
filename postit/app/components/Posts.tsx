@@ -1,6 +1,9 @@
 import axios from "axios";
 import prisma from "../../prisma/client";
 import Image from "next/image";
+import PostInfo from "./PostInfo";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../../pages/api/auth/[...nextauth]";
 
 interface Post {
   id: string;
@@ -12,12 +15,12 @@ interface Post {
 }
 
 async function Posts() {
+  const session = await getServerSession(authOptions);
   const posts = await prisma.post.findMany({
     include: {
       User: true,
     },
   });
-  console.log(posts);
 
   return (
     <div className="flex flex-col items-center">
@@ -36,6 +39,11 @@ async function Posts() {
           <div className="h-32 mx-h-32 bg-gray-200 p-4 mt-2">
             <p className="text-sm">{post.title}</p>
           </div>
+          <PostInfo
+            id={post.id}
+            user={post.User}
+            session={session!!}
+          ></PostInfo>
         </div>
       ))}
     </div>

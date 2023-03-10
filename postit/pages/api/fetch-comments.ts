@@ -9,9 +9,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  // const session = await getServerSession(authOptions);
-
-  const posts = await prisma.post.findMany();
-
+  await prisma.comment.findMany({
+    include: {
+      User: true,
+    },
+  });
   res.status(200).json({ name: "Posts Fetched" });
 }
