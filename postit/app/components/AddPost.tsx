@@ -30,7 +30,7 @@ function AddPost({ email }: User) {
       <div className="flex w-1/2 justify-between items-center">
         <p
           className={`${
-            text.length > 200 ? `text-red-600` : `text-black`
+            text.length > 200 ? `text-red-600` : `text-white`
           } text-sm`}
         >{`${text.length}/200`}</p>
         <button

@@ -14,6 +14,7 @@ interface User {
 function AddComment({ email, id, comments }: User) {
   const Router = useRouter();
   const [text, setText] = useState("");
+  const [newComments, setNewComments] = useState(comments);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAdd = async () => {
@@ -23,8 +24,11 @@ function AddComment({ email, id, comments }: User) {
       email,
       postId: id,
     });
+    const { data } = await axios.get(
+      "http://localhost:3000/api/fetch-comments"
+    );
+    setNewComments(data);
     setIsLoading(false);
-    Router.refresh();
   };
   return (
     <div>
@@ -44,7 +48,11 @@ function AddComment({ email, id, comments }: User) {
           </button>
         </div>
       </div>
-      <Comments comments={comments} id={id}></Comments>
+      <Comments
+        newComments={newComments}
+        comments={comments}
+        id={id}
+      ></Comments>
     </div>
   );
 }

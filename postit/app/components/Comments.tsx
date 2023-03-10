@@ -4,13 +4,14 @@ import Image from "next/image";
 interface Comments {
   comments: object;
   id: string;
+  newComments: object;
 }
 
-function Comments({ comments, id }: Comments) {
+function Comments({ comments, id, newComments }: Comments) {
   return (
     <div>
-      {comments &&
-        comments.name.map((comment) => {
+      {newComments &&
+        newComments.name.map((comment) => {
           return (
             <div>
               {comment.postId === id && (
