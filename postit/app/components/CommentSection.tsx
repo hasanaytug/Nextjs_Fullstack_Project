@@ -1,10 +1,16 @@
 import React from "react";
 import AddComment from "./AddComment";
 
-function CommentSection() {
+interface User {
+  email: string;
+  id: string;
+  comments: object;
+}
+function CommentSection({ id, email, comments }: User) {
+  console.log(comments);
   return (
     <div>
-      <AddComment></AddComment>
+      <AddComment comments={comments} email={email} id={id}></AddComment>
     </div>
   );
 }

@@ -23,7 +23,7 @@ export default async function handler(
       data: {
         title: req.body.text,
         userId: targetUser.id,
-        postId: req.body.id,
+        postId: req.body.postId,
       },
     });
   }

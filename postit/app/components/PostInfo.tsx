@@ -13,17 +13,28 @@ interface Post {
 function PostInfo({ id, user, session }: Post) {
   const Router = useRouter();
   const [showComments, setShowComments] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [comments, setComments] = useState({});
 
-  const handleComments = () => {
+  const handleComments = async () => {
+    setIsLoading(true);
+    const { data } = await axios.get(
+      "http://localhost:3000/api/fetch-comments"
+    );
+    setComments(data);
     setShowComments(!showComments);
+    setIsLoading(false);
   };
 
   const handleDelete = async () => {
+    setIsDeleting(true);
     const res = await axios.delete("http://localhost:3000/api/delete-post", {
       data: {
         id,
       },
     });
+    setIsDeleting(false);
     Router.refresh();
   };
   return (
@@ -33,25 +44,33 @@ function PostInfo({ id, user, session }: Post) {
         <div>
           {session && (
             <button
-              className="bg-blue-200 px-2 rounded"
+              className={`${
+                isLoading ? "bg-blue-200 disabled opacity-75" : "bg-blue-200"
+              }  px-2 rounded`}
               onClick={handleComments}
             >
-              Comment
+              {isLoading ? "Loading..." : "Comments"}
             </button>
           )}
           {session?.user?.email === user.email && (
             <button
               onClick={handleDelete}
-              className="bg-red-600 text-white px-2 rounded ml-2"
+              className={`${
+                isDeleting ? "bg-red-600 disabled:opacity-75" : "bg-red-600"
+              }  text-white px-2 rounded ml-2`}
             >
-              Delete
+              {isDeleting ? "Deleting..." : "Delete"}
             </button>
           )}
         </div>
       </div>
 
       {showComments && (
-        <CommentSection id={id} email={session?.user.email}></CommentSection>
+        <CommentSection
+          comments={comments || {}}
+          id={id}
+          email={session?.user.email}
+        ></CommentSection>
       )}
     </div>
   );

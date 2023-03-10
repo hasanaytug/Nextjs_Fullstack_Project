@@ -26,9 +26,9 @@ async function Posts() {
     <div className="flex flex-col items-center">
       {posts.map((post: Post) => (
         <div className="w-1/2 mt-5" key={post.id}>
-          <div className="flex items-center">
+          <div className="flex items-center bg-gray-200 pt-2">
             <Image
-              className="ml-4 rounded-full"
+              className="ml-4 rounded-full "
               width={32}
               height={32}
               alt="user picture"
@@ -36,7 +36,7 @@ async function Posts() {
             ></Image>
             <p className="text-sm ml-2">{post.User.name}</p>
           </div>
-          <div className="h-32 mx-h-32 bg-gray-200 p-4 mt-2">
+          <div className="h-32 mx-h-32 bg-gray-200 p-4">
             <p className="text-sm">{post.title}</p>
           </div>
           <PostInfo
