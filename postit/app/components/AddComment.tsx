@@ -28,22 +28,17 @@ function AddComment({ email, id, comments }: User) {
   };
   return (
     <div>
-      <div className="flex flex-col items-center">
+      <div className="flex items-center mt-6 ">
         <input
           value={text.length < 200 ? text : text.slice(0, 199)}
           onChange={(e) => setText(e.target.value)}
           placeholder="Type your comment"
-          className=" mt-10 w-full  h-8 bg-gray-100 focus:outline-none p-4 resize-none overflow-hidden rounded"
+          className="w-full h-8 bg-gray-100 focus:outline-none p-4 resize-none overflow-hidden rounded"
         />
-        <div className="flex w-full justify-between items-center">
-          <p
-            className={`${
-              text.length > 200 ? `text-red-600` : `text-black`
-            } text-sm`}
-          >{`${text.length}/200`}</p>
+        <div className="flex w-full justify-end items-center">
           <button
             onClick={handleAdd}
-            className="bg-blue-300 p-1 rounded m-2 text-sm"
+            className="bg-blue-300 p-1 rounded m-2 w-full text-sm"
           >
             {isLoading ? "Loading..." : "Comment"}
           </button>

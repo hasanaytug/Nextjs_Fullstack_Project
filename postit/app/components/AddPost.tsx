@@ -23,6 +23,7 @@ function AddPost({ email }: User) {
     <div className="flex flex-col items-center">
       <textarea
         value={text.length < 200 ? text : text.slice(0, 199)}
+        placeholder="Share your thoughts"
         onChange={(e) => setText(e.target.value)}
         className="w-1/2 mt-10  h-32 mx-h-32 bg-gray-200 focus:outline-none p-4 resize-none overflow-hidden rounded"
       ></textarea>

@@ -14,7 +14,7 @@ function Comments({ comments, id }: Comments) {
           return (
             <div>
               {comment.postId === id && (
-                <div className="bg-gray-100 p-2 rounded-xl flex mt-1">
+                <div className="bg-gray-600 p-2 rounded-xl flex mt-1">
                   <Image
                     className="ml-4 rounded-full h-8 mx-h-8"
                     width={32}
@@ -22,7 +22,9 @@ function Comments({ comments, id }: Comments) {
                     alt="user picture"
                     src={comment.User.image}
                   ></Image>
-                  <p className="ml-4 w-64 break-words">{comment.title}</p>
+                  <p className="ml-4 w-64 break-words text-white overflow-hidden">
+                    {comment.title}
+                  </p>
                 </div>
               )}
             </div>

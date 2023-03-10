@@ -40,7 +40,6 @@ function PostInfo({ id, user, session }: Post) {
   return (
     <div className="mt-1">
       <div className="flex justify-between">
-        <div>{session && <button className="bg-blue-400">Like</button>}</div>
         <div>
           {session && (
             <button
