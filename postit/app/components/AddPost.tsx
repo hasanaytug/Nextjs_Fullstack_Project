@@ -3,14 +3,19 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function AddPost() {
+interface User {
+  email: string;
+}
+
+function AddPost({ email }: User) {
   const [text, setText] = useState("");
 
   const handleAdd = async () => {
+    console.log(email);
     const res = await axios.post("http://localhost:3000/api/create-post", {
       text,
+      email,
     });
-    console.log(res);
   };
   return (
     <div className="flex flex-col items-center">
