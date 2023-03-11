@@ -10,7 +10,7 @@ export default async function Home() {
   const session = await getServerSession(authOptions);
   return (
     <main>
-      {session ? <AddPost email={session.user?.email || ""}></AddPost> : null}
+      <AddPost session={session} email={session?.user?.email || ""}></AddPost>
       {/* @ts-expect-error Server Component */}
       <Posts></Posts>
     </main>
